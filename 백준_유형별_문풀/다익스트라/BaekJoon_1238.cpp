@@ -19,7 +19,7 @@ struct cmp {
 int n, m, x;
 vector<Node> v[1001];
 
-int dijkstra2(int s) {
+int dijkstra_go(int s) {
 	priority_queue<Node, vector<Node>, cmp> pq;
 	vector<int> dist(n + 1, 213456789);
 	vector<int> used(n + 1, 0);
@@ -47,7 +47,7 @@ int dijkstra2(int s) {
 	return dist[x];
 }
 
-int dijkstra1() {
+int dijkstra_back() {
 	priority_queue<Node, vector<Node>, cmp> pq;
 	vector<int> dist(n+1, 213456789);
 	vector<int> used(n + 1, 0);
@@ -74,7 +74,7 @@ int dijkstra1() {
 	int max_dist = -1;
 	for (int i = 1; i <= n; i++)
 	{
-		int a = dijkstra2(i);
+		int a = dijkstra_go(i);
 		dist[i] += a;
 		if (max_dist < dist[i]) max_dist = dist[i];
 	}
@@ -94,7 +94,7 @@ int main() {
 		v[a].push_back({ b,c });
 	}
 
-	cout << dijkstra1();
+	cout << dijkstra_back();
 
 	return 0;
 }
